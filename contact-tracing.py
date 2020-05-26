@@ -63,6 +63,10 @@ def selfReport(i):
                 for j in covid_data[date][i]:
                     notify(j)
 
+#quicktest [Uncomment to see for yourself]
+#covid_data = dict()
+#updateData(10, 11)
+#selfReport(11)
 
 #Simulate 100 random self-reports
 for i in range(100):
