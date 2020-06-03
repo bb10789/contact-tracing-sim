@@ -48,12 +48,17 @@ def notify(i):
 
 def selfReport(i):
     # User i self-reports
+    infected = []
     for k in range(15):
         date = currentDate - datetime.timedelta(days=(14-k))
         if date in covid_data.keys():
             if i in covid_data[date].keys():
                 for j in covid_data[date][i]:
-                    notify(j)
+                    if (not (infected and j in infected)):
+                        notify(j)
+                        infected.append(j)
+                    
+    return infected
 
 #quicktest [Uncomment to see for yourself]
 
