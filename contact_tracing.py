@@ -35,14 +35,6 @@ def updateData(i, j):
             covid_data[currentDate][j] = []
             covid_data[currentDate][j].append(i)
 
-# Generate two weeks of spoofed data
-for i in range(14):
-    # Simulate 4000 random interactions from a population of 20,000 that day
-    for j in range(4000):
-        interaction = random.sample(range(0, 20000), 2)
-        updateData(interaction[0], interaction[1])
-    currentDate = currentDate + datetime.timedelta(days=1)
-
 def garbageCollect():
     # Called every day, to remove unnecessary data from our database
     oldDate = currentDate - datetime.timedelta(days=15)
@@ -64,10 +56,17 @@ def selfReport(i):
                     notify(j)
 
 #quicktest [Uncomment to see for yourself]
-#covid_data = dict()
-#updateData(10, 11)
-#selfReport(11)
 
-#Simulate 100 random self-reports
-for i in range(100):
-    selfReport(random.randrange(0, 20000, 1))
+if (__name__ == '__main__'):
+    # Generate two weeks of spoofed data
+    for i in range(14):
+        # Simulate 4000 random interactions from a population of 20,000 that day
+        for j in range(4000):
+            interaction = random.sample(range(0, 20000), 2)
+            updateData(interaction[0], interaction[1])
+        currentDate = currentDate + datetime.timedelta(days=1)
+
+    #Simulate 100 random self-reports
+    for i in range(100):
+        selfReport(random.randrange(0, 20000, 1))
+
